@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from '../card/card';
 
 
-function Main() {
+function Main(props) {
+
+  const {cardsCounter = 5} = props;
 
   const cardsConfig = [
     {
@@ -111,7 +115,7 @@ function Main() {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {
-                  cardsConfig.map((card) => <Card data={card} key={`card-${card.id}`} />)
+                  cardsConfig.map((card) => card.id < cardsCounter && <Card data={card} key={`card-${card.id}`} />)
                 }
               </div>
             </section>
@@ -124,5 +128,10 @@ function Main() {
     </div>
   );
 }
+
+Main.propTypes = {
+  cardsCounter: PropTypes.number.isRequired,
+};
+
 
 export default Main;
