@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
 import {AppRoute} from '../../const.js';
@@ -8,24 +7,25 @@ import SignIn from '../pages/signIn/signIn';
 import Favorites from '../pages/favorites/favorites';
 import Room from '../pages/room/room';
 import NotFound from '../pages/notFound/notFound';
+import {offersArrayProp} from '../../mocks/offers.prop';
 
 function App(props) {
-  const {cardsCounter} = props;
+  const {offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
-          <Main cardsCounter={cardsCounter} />
+          <Main offers={offers} />
         </Route>
         <Route exact path={AppRoute.SIGN_IN}>
           <SignIn />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
-          <Favorites />
+          <Favorites offers={offers} />
         </Route>
         <Route exact path={AppRoute.ROOM}>
-          <Room />
+          <Room offers={offers} />
         </Route>
         <Route>
           <NotFound />
@@ -36,7 +36,7 @@ function App(props) {
 }
 
 App.propTypes = {
-  cardsCounter: PropTypes.number.isRequired,
+  offers: offersArrayProp,
 };
 
 export default App;

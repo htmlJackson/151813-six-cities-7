@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-
-const cardsCounter = 3;
+import offers from './mocks/offers';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App cardsCounter={cardsCounter} />
+    <App offers={offers} />
   </React.StrictMode>,
   document.getElementById('root'));
